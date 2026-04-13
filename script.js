@@ -217,8 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ──────────────────────────────────────
      8. CONTACT FORM
-     
-   });const FORMSPREE_URL = 'https://formspree.io/f/myklykrp';
+     // Baris 7 di bagian Contact Form:
+const FORMSPREE_URL = ''https://formspree.io/f/myklykrp';
+//                                              ^^^^^^^^
+//                            
   ────────────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
