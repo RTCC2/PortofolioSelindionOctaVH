@@ -217,12 +217,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ──────────────────────────────────────
      8. CONTACT FORM
-
-
-     https://formspree.io/f/myklykrp
      
-     Setelah set URL, form akan langsung bisa mengirim email!
-  ────────────────────────────────────── */
+     Opsi A: Gunakan Formspree (gratis, mudah)
+     Cara: Daftar di formspree.io → buat form → salin endpoint
+     Ganti URL di bawah dengan endpoint Formspree kamu:
+     https://formspree.io/f/XXXXXXXX
+     
+     Opsi B: Gunakan EmailJS (gratis tier tersedia)
+     Cara: emailjs.com → setup service + template
   ────────────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
