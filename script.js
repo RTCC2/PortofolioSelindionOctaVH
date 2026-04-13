@@ -217,10 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ──────────────────────────────────────
      8. CONTACT FORM
-     // Baris 7 di bagian Contact Form:
-const FORMSPREE_URL = ''https://formspree.io/f/myklykrp';
-//                                              ^^^^^^^^
-//                            
+
+
+     https://formspree.io/f/myklykrp
+     
+     Setelah set URL, form akan langsung bisa mengirim email!
+  ────────────────────────────────────── */
   ────────────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
