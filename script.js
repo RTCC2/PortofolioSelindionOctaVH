@@ -218,13 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ──────────────────────────────────────
      8. CONTACT FORM
      
-     Opsi A: Gunakan Formspree (gratis, mudah)
-     Cara: Daftar di formspree.io → buat form → salin endpoint
-     Ganti URL di bawah dengan endpoint Formspree kamu:
-     https://formspree.io/f/XXXXXXXX
-     
-     Opsi B: Gunakan EmailJS (gratis tier tersedia)
-     Cara: emailjs.com → setup service + template
+   });const FORMSPREE_URL = 'https://formspree.io/f/myklykrp';
   ────────────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
