@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       // Basic validation
-      const required = contactForm.querySelectorAll('[required]');
+          const required = contactForm.querySelectorAll('[required]');
       let valid = true;
       required.forEach(field => {
         if (!field.value.trim()) {
@@ -252,27 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      /* ── OPSI A: Formspree ─────────────────────────
-         Uncomment dan ganti URL dengan endpoint kamu:
-      ─────────────────────────────────────────────── */
-      /*
-      try {
-        const formData = new FormData(contactForm);
-        const response = await fetch('https://formspree.io/f/XXXXXXXX', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          showSuccess();
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (err) {
-        alert('Terjadi kesalahan. Silakan hubungi langsung via email.');
-        resetBtn();
-      }
-      */
 
       /* ── DEMO MODE (hapus ini jika pakai Formspree/EmailJS) ── */
       setTimeout(() => {
