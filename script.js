@@ -264,8 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '';
         if (formSuccess) {
-          formSuccess.classList.add('show');
-          setTimeout(() => formSuccess.classList.remove('show'), 5000);
+          function showSuccess() {
+  contactForm.reset();
+  submitBtn.innerHTML = originalHTML;
+  submitBtn.disabled = false;
+  submitBtn.style.opacity = '';
         }
       }
 
