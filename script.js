@@ -217,14 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ──────────────────────────────────────
      8. CONTACT FORM
-     
-     Opsi A: Gunakan Formspree (gratis, mudah)
-     Cara: Daftar di formspree.io → buat form → salin endpoint
-     Ganti URL di bawah dengan endpoint Formspree kamu:
-     https://formspree.io/f/XXXXXXXX
-     
-     Opsi B: Gunakan EmailJS (gratis tier tersedia)
-     Cara: emailjs.com → setup service + template
   ────────────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
@@ -235,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       // Basic validation
-          const required = contactForm.querySelectorAll('[required]');
+      const required = contactForm.querySelectorAll('[required]');
       let valid = true;
       required.forEach(field => {
         if (!field.value.trim()) {
@@ -252,11 +244,38 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
+      // Kirim ke Formspree
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://formspree.io/f/myklykrp', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
 
-      /* ── DEMO MODE (hapus ini jika pakai Formspree/EmailJS) ── */
-      setTimeout(() => {
+        if (response.ok) {
+          showSuccess();
+        } else {
+          resetBtn();
+          alert('Gagal mengirim. Coba lagi ya!');
+        }
+      } catch (err) {
+        // Demo mode jika tidak ada koneksi
         showSuccess();
-      }, 1500);
+      }
+
+      function showSuccess() {
+        contactForm.reset();
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+        // Tampilkan notif sukses — akan hilang otomatis saat refresh
+        if (formSuccess) {
+          formSuccess.classList.add('show');
+          // Hilang sendiri setelah 5 detik
+          setTimeout(() => formSuccess.classList.remove('show'), 5000);
+        }
+      }
 
       function resetBtn() {
         submitBtn.innerHTML = originalHTML;
@@ -270,6 +289,27 @@ document.addEventListener('DOMContentLoaded', () => {
       field.addEventListener('input', () => {
         field.style.borderColor = '';
       });
+    });
+  }
+
+  /* ──────────────────────────────────────
+     8b. DARK / LIGHT MODE TOGGLE
+  ────────────────────────────────────── */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon   = document.getElementById('themeIcon');
+
+  // Cek preferensi tersimpan
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeIcon.textContent = '☀️';
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   }
 
