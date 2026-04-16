@@ -1201,57 +1201,167 @@ body.dark-mode .form-success {
   .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
 }
 
+/* ─── MOBILE SIDEBAR DRAWER ─── */
+
+/* Overlay backdrop */
+.nav__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9998;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.nav__overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+/* Drawer panel */
+.nav__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(300px, 80vw);
+  background: var(--dark-900);
+  border-left: 1px solid var(--dark-600);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+}
+.nav__drawer.open {
+  transform: translateX(0);
+}
+
+/* Drawer header */
+.nav__drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--dark-600);
+  height: var(--nav-h);
+}
+.nav__drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+}
+.nav__drawer-close {
+  background: none;
+  border: 1px solid var(--dark-500);
+  border-radius: var(--radius-sm);
+  color: var(--light-300);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.nav__drawer-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Drawer menu links */
+.nav__drawer-menu {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+.nav__drawer-menu li {
+  padding: 0 1rem;
+}
+.nav__drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--light-300);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+  margin-bottom: 0.15rem;
+}
+.nav__drawer-item:hover,
+.nav__drawer-item.active {
+  color: var(--gold);
+  background: var(--gold-glow);
+}
+.nav__drawer-item--cta {
+  background: var(--gold);
+  color: var(--dark-900) !important;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+.nav__drawer-item--cta:hover {
+  background: var(--gold-lt);
+}
+
+/* Drawer footer — theme toggle */
+.nav__drawer-footer {
+  border-top: 1px solid var(--dark-600);
+  padding: 1.25rem 1.5rem;
+}
+.nav__drawer-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav__drawer-theme-label {
+  font-size: 0.82rem;
+  color: var(--mid-400);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.theme-toggle--mobile {
+  width: 40px;
+  height: 40px;
+}
+
 @media (max-width: 640px) {
   .nav {
     padding: 0 1.25rem;
   }
 
-  /* On mobile, brand takes available space, right group stacks neatly */
+  /* Hide desktop nav menu on mobile */
+  .nav__menu {
+    display: none !important;
+  }
+
+  /* Show burger */
+  .nav__burger { display: flex; }
+
   .nav__brand .brand-name {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
+    max-width: 180px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 160px;
-  }
-
-  /* Show burger, keep theme toggle visible too */
-  .nav__burger { display: flex; }
-
-  /* Mobile menu — full screen dropdown */
-  .nav__menu {
-    display: none;
-    position: fixed;
-    top: var(--nav-h);
-    left: 0; right: 0;
-    bottom: 0;
-    background: rgba(255,255,255,0.97);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 2rem 1.5rem;
-  }
-  .nav__menu.open { display: flex; }
-
-  .nav__menu li { width: 100%; text-align: center; }
-  .nav__item {
-    display: block;
-    font-size: 1.1rem;
-    padding: 0.9rem 2rem;
-    border-radius: var(--radius-md);
-    width: 100%;
-  }
-  .nav__item--cta {
-    margin-left: 0;
-    margin-top: 0.75rem;
-    padding: 0.9rem 2rem;
   }
 
   .section { padding: 5rem 0; }
   .form-row { grid-template-columns: 1fr; }
   .footer__inner { flex-direction: column; text-align: center; }
   .contact-form-wrap { padding: 1.5rem; }
+}
+
+/* Dark mode drawer */
+body.dark-mode .nav__drawer {
+  background: var(--dark-800);
+  border-left-color: var(--dark-500);
 }
