@@ -34,6 +34,9 @@
       <li><a href="#skills"     class="nav__item" data-section="skills">Skills</a></li>
       <li><a href="#contact"    class="nav__item nav__item--cta" data-section="contact">Contact</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+      <span class="theme-toggle__icon" id="themeIcon">🌙</span>
+    </button>
   </nav>
 
   <!-- ═══════════════════════════════════
@@ -730,7 +733,7 @@
 
         <!-- Contact Form -->
        <div class="contact-form-wrap reveal">
-          <form action="https://formspree.io/f/myklykrp" method="POST">
+          <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label for="c-name">Nama Lengkap *</label>
@@ -761,11 +764,11 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
             <p class="form-note">* Wajib diisi. Biasanya saya membalas dalam 24 jam.</p>
-            <!-- Success message -->
-                     <!-- Success message -->
-         <div id="formSuccess"> 
-            🎉 Pesanmu berhasil terkirim! ...
-        </div>
+            <!-- Success message: tersembunyi by default, muncul setelah submit, hilang saat refresh -->
+            <div id="formSuccess" class="form-success">
+              <span>🎉</span>
+              <p>Pesanmu berhasil terkirim! Saya akan segera menghubungimu.</p>
+            </div>
           </form>
         </div>
       </div>
