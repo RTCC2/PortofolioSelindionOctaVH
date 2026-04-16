@@ -50,31 +50,45 @@ document.addEventListener('DOMContentLoaded', () => {
     navItems.forEach(item => {
       item.classList.toggle('active', item.dataset.section === current);
     });
+
+    // Sync drawer active links too
+    document.querySelectorAll('.nav__drawer-item[data-section]').forEach(item => {
+      item.classList.toggle('active', item.dataset.section === current);
+    });
   }
 
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
   /* ──────────────────────────────────────
-     3. MOBILE HAMBURGER MENU
+     3. MOBILE SIDEBAR DRAWER
   ────────────────────────────────────── */
-  const burger  = document.getElementById('burger');
-  const navMenu = document.getElementById('navMenu');
+  const burger      = document.getElementById('burger');
+  const navDrawer   = document.getElementById('navDrawer');
+  const navOverlay  = document.getElementById('navOverlay');
+  const drawerClose = document.getElementById('drawerClose');
 
-  if (burger && navMenu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      navMenu.classList.toggle('open');
-      document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
-    });
+  function openDrawer() {
+    navDrawer.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    burger.classList.add('open');
+  }
+  function closeDrawer() {
+    navDrawer.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    burger.classList.remove('open');
+  }
 
-    // Close menu when a link is clicked
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        burger.classList.remove('open');
-        navMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+  if (burger) burger.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (navOverlay) navOverlay.addEventListener('click', closeDrawer);
+
+  // Close drawer when a link inside is clicked
+  if (navDrawer) {
+    navDrawer.querySelectorAll('.nav__drawer-item').forEach(link => {
+      link.addEventListener('click', closeDrawer);
     });
   }
 
@@ -295,21 +309,31 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ──────────────────────────────────────
      8b. DARK / LIGHT MODE TOGGLE
   ────────────────────────────────────── */
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon   = document.getElementById('themeIcon');
+  const themeToggle       = document.getElementById('themeToggle');
+  const themeIcon         = document.getElementById('themeIcon');
+  const themeToggleMobile = document.getElementById('themeToggleMobile');
+  const themeIconMobile   = document.getElementById('themeIconMobile');
 
-  // Cek preferensi tersimpan
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    themeIcon.textContent = '☀️';
+  function applyTheme(isDark) {
+    document.body.classList.toggle('dark-mode', isDark);
+    const icon = isDark ? '☀️' : '🌙';
+    if (themeIcon) themeIcon.textContent = icon;
+    if (themeIconMobile) themeIconMobile.textContent = icon;
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') applyTheme(true);
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode');
-      themeIcon.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      applyTheme(!document.body.classList.contains('dark-mode'));
+    });
+  }
+  if (themeToggleMobile) {
+    themeToggleMobile.addEventListener('click', () => {
+      applyTheme(!document.body.classList.contains('dark-mode'));
     });
   }
 
