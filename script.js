@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedEl = document.getElementById('typedRole');
   if (typedEl) {
     const roles = [
-      'Water Resource Engineering Student',
+      'Water Construction Engineering Student',
       'Leadership Management',
       'Problem Solver',
       'Analitis',
