@@ -373,3 +373,73 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+/* ──────────────────────────────────────
+   CV PREVIEW MODAL
+────────────────────────────────────── */
+function openCVModal() {
+  const overlay = document.getElementById('cvModalOverlay');
+  if (overlay) {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCVModal() {
+  const overlay = document.getElementById('cvModalOverlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCVModal();
+});
+
+/* ──────────────────────────────────────
+   CV TAB FILTER
+────────────────────────────────────── */
+const cvTabBtns = document.querySelectorAll('.cv-tab-btn');
+const cvTabPanels = document.querySelectorAll('.cv-tab-panel');
+
+cvTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-tab');
+
+    // Update active button
+    cvTabBtns.forEach(b => b.classList.remove('cv-tab-btn--active'));
+    btn.classList.add('cv-tab-btn--active');
+
+    // Show/hide panels
+    cvTabPanels.forEach(panel => {
+      if (panel.id === 'tab-' + target) {
+        panel.classList.remove('cv-tab-panel--hidden');
+      } else {
+        panel.classList.add('cv-tab-panel--hidden');
+      }
+    });
+  });
+});
+
+/* ──────────────────────────────────────
+   LOADING SCREEN — tema-aware
+────────────────────────────────────── */
+(function () {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+
+  // Baca tema yang sudah tersimpan di localStorage SEBELUM loader tampil
+  // supaya warna loader langsung sesuai pilihan user
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+
+  // Sembunyikan loader setelah animasi bar selesai (~2.8s)
+  setTimeout(() => {
+    loader.classList.add('hide');
+    loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+  }, 2800);
+})();
