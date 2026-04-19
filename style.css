@@ -1403,33 +1403,84 @@ body.dark-mode .nav__drawer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
+  padding: 1.4rem 1.75rem;
   border-bottom: 1px solid var(--dark-600);
   gap: 1rem;
+  background: linear-gradient(135deg, var(--dark-900) 0%, var(--dark-800) 100%);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Gold shimmer accent line at top */
+.cv-modal__header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-lt), var(--gold), transparent);
+}
+
+/* Subtle decorative circle in background */
+.cv-modal__header::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -40px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-glow);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .cv-modal__title {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  align-items: flex-start;
+  gap: 0;
 }
-.cv-modal__icon {
-  font-size: 1.75rem;
-  line-height: 1;
+
+.cv-modal__title-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
+
+.cv-modal__label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.9;
+}
+
 .cv-modal__title h3 {
-  font-family: var(--ff-display);
-  font-size: 1.05rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 400;
   color: var(--light-100);
-  margin-bottom: 0.15rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
 }
-.cv-modal__title p {
-  font-size: 0.8rem;
+
+.cv-modal__title h3 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.cv-modal__tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.73rem;
   color: var(--mid-400);
+  letter-spacing: 0.02em;
+  margin-top: 0.1rem;
 }
+
 .cv-modal__actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 .cv-modal__close {
   background: var(--dark-700);
@@ -1480,6 +1531,9 @@ body.dark-mode .nav__drawer {
 body.dark-mode .cv-modal {
   background: var(--dark-800);
   border-color: var(--dark-500);
+}
+body.dark-mode .cv-modal__header {
+  background: linear-gradient(135deg, var(--dark-800) 0%, var(--dark-700) 100%);
 }
 
 /* ─── TIMELINE DOTS: ORGANISASI & ABMAS ─── */
@@ -1613,17 +1667,18 @@ body.dark-mode {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 2px solid var(--gold);
+  border: 1.5px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--ff-display);
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 600;
   color: var(--gold);
   margin-bottom: 0.5rem;
   animation: loaderSpin 1.2s ease both;
-  box-shadow: 0 0 40px rgba(201,151,59,0.2);
+  box-shadow: 0 0 50px rgba(201,151,59,0.18), inset 0 0 30px rgba(201,151,59,0.04);
+  letter-spacing: 0.05em;
 }
 
 @keyframes loaderSpin {
@@ -1652,9 +1707,10 @@ body.dark-mode {
 
 /* Teks */
 .loader__welcome {
-  font-family: var(--ff-body);
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0;
@@ -1662,27 +1718,32 @@ body.dark-mode {
 }
 
 .loader__name {
-  font-family: var(--ff-display);
-  font-size: clamp(1.6rem, 5vw, 2.8rem);
-  font-weight: 700;
-  color: var(--loader-name);   /* ← ikut tema */
-  line-height: 1.2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 300;
+  color: var(--loader-name);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   opacity: 0;
   animation: loaderText 0.7s 0.75s ease forwards;
 }
 
 .loader__name em {
   font-style: italic;
+  font-weight: 400;
   color: var(--gold);
 }
 
 .loader__sub {
-  font-family: var(--ff-body);
-  font-size: 0.95rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
   color: var(--mid-400);
   opacity: 0;
   animation: loaderText 0.7s 1s ease forwards;
-  margin-top: 0.15rem;
+  margin-top: 0.4rem;
 }
 
 @keyframes loaderText {
