@@ -178,12 +178,11 @@
           <div class="cv-card cv-card--download">
             <div class="cv-card__icon">📄</div>
             <h3>Unduh CV Lengkap</h3>
-            <p>Versi PDF lengkap dengan detail pengalaman, pendidikan, dan  proyek.</p>
-            <!-- Ganti href dengan path file CV kamu -->
-            <a href="Selindion Octa Viendra Hartono-CV-Terbaru.pdf" download class="btn btn--primary btn--block">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CV (PDF)
-            </a>
+            <p>Versi PDF lengkap dengan detail pengalaman, pendidikan, dan proyek.</p>
+            <button onclick="openCVModal()" class="btn btn--primary btn--block" style="cursor:pointer;border:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Preview & Download CV
+            </button>
           </div>
 
           <div class="cv-card">
@@ -209,40 +208,53 @@
           </div>
         </div>
 
-        <!-- Right: Timeline -->
+        <!-- Right: Timeline with Tab Filter -->
         <div class="cv-timeline reveal">
-          <div class="cv-timeline__section">
-            <h3 class="cv-timeline__heading">
-              <span class="cv-timeline__heading-icon">💼</span> Pengalaman Kerja
-            </h3>
+
+          <!-- TAB FILTER -->
+          <div class="cv-tab-filter">
+            <button class="cv-tab-btn cv-tab-btn--active" data-tab="kerja">
+              <span>💼</span> Pengalaman Kerja
+            </button>
+            <button class="cv-tab-btn" data-tab="pendidikan">
+              <span>🎓</span> Pendidikan
+            </button>
+            <button class="cv-tab-btn" data-tab="organisasi">
+              <span>🏛️</span> Organisasi
+            </button>
+            <button class="cv-tab-btn" data-tab="abmas">
+              <span>🤝</span> Pengabdian Masyarakat
+            </button>
+          </div>
+
+          <!-- TAB: PENGALAMAN KERJA -->
+          <div class="cv-tab-panel" id="tab-kerja">
             <div class="timeline-item">
               <div class="timeline-item__dot"></div>
               <div class="timeline-item__date">Januari 2026</div>
               <h4 class="timeline-item__role">Freelance Surveyor</h4>
-              <p class="timeline-item__company">Dinas Pekerjaan Umum Sumber Daya Air Provinsi Jawa Timur - PT. SAC Nusantara, KSO. - · Surabaya, Jawa Timur, Indonesia.</p>
-              <p class="timeline-item__desc">Bertugas melakukan survei harga material dan bahan bangunan di berbagai toko yang berada di Kabupaten Malang untuk Analisa Harga Satuan Pekerjaan (AHSP). </p>
-              <div class="timeline-item__tags">
-              <span>Surveyor</span>
-              </div>
+              <p class="timeline-item__company">Dinas Pekerjaan Umum Sumber Daya Air Provinsi Jawa Timur - PT. SAC Nusantara, KSO. · Surabaya, Jawa Timur, Indonesia.</p>
+              <p class="timeline-item__desc">Bertugas melakukan survei harga material dan bahan bangunan di berbagai toko yang berada di Kabupaten Malang untuk Analisa Harga Satuan Pekerjaan (AHSP).</p>
+              <div class="timeline-item__tags"><span>Surveyor</span></div>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-item__dot"></div>
               <div class="timeline-item__date">Oktober 2025 — Desember 2025</div>
-              <h4 class="timeline-item__role">Asisstant Quantity Surveyor</h4>
-              <p class="timeline-item__company">PT. Nindya Karya (Persero) - · Jawa Tengah, Indonesia.</p>
-              <p class="timeline-item__desc">Bertanggung jawab atas pengukuran pekerjaan (opname) dan perhitungan volume progres pekerjaan konstruksi, serta memastikan keakuratan dan kesesuaian dengan perencanaan proyek dan kebutuhan pelaporan pada ProyekPeningkatan dan Rehabilitasi Jaringan Utama Kewenangan Daerah di BBWS Pemali Juana (INPRES TAHAP III).</p>
+              <h4 class="timeline-item__role">Assistant Quantity Surveyor</h4>
+              <p class="timeline-item__company">PT. Nindya Karya (Persero) · Jawa Tengah, Indonesia.</p>
+              <p class="timeline-item__desc">Bertanggung jawab atas pengukuran pekerjaan (opname) dan perhitungan volume progres pekerjaan konstruksi, serta memastikan keakuratan dan kesesuaian dengan perencanaan proyek pada Proyek Peningkatan dan Rehabilitasi Jaringan Utama Kewenangan Daerah di BBWS Pemali Juana (INPRES TAHAP III).</p>
               <div class="timeline-item__tags">
-                <span>Opname Proyek</span><span>Perhitungan Volume Progress</span><span>MS.Excel</span>
+                <span>Opname Proyek</span><span>Perhitungan Volume Progress</span><span>MS. Excel</span>
               </div>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-item__dot"></div>
-              <div class="timeline-item__date">Juli 2025 - November 2025</div>
+              <div class="timeline-item__date">Juli 2025 — November 2025</div>
               <h4 class="timeline-item__role">Student Intern</h4>
-              <p class="timeline-item__company">PT Nindya Karya (Persero) - PT. SAC Nusantara, KSO. - · Semarang, Jawa Tengah, Indonesia.</p>
-              <p class="timeline-item__desc">Berkesempatan magang di Proye Pengendalian Banjir Sistem Tenggang-Sringin Tahap I Paket II dengan bergabung ke beberapa lintas divisi.</p>
+              <p class="timeline-item__company">PT Nindya Karya (Persero) - PT. SAC Nusantara, KSO. · Semarang, Jawa Tengah, Indonesia.</p>
+              <p class="timeline-item__desc">Berkesempatan magang di Proyek Pengendalian Banjir Sistem Tenggang-Sringin Tahap I Paket II dengan bergabung ke beberapa lintas divisi.</p>
               <div class="timeline-item__tags">
                 <span>Inspektor Lapangan</span><span>Quality Control</span><span>Quantity Surveyor</span>
               </div>
@@ -252,70 +264,108 @@
               <div class="timeline-item__dot"></div>
               <div class="timeline-item__date">Mei 2025</div>
               <h4 class="timeline-item__role">Freelance Estimator</h4>
-              <p class="timeline-item__company">Dinas Pertanian Provinsi Jawa Timur· Surabaya, Jawa Timur, Indonesia</p>
+              <p class="timeline-item__company">Dinas Pertanian Provinsi Jawa Timur · Surabaya, Jawa Timur, Indonesia</p>
               <p class="timeline-item__desc">Menjadi freelance estimator pada Proyek Survey Investigasi Desain Irigasi Madura yang bertanggung jawab terhadap perencanaan RAB pada kelompok tani di Kabupaten Pamekasan.</p>
-              <div class="timeline-item__tags">
-                <span>RAB</span><span>MS.Excel</span>
-              </div>
+              <div class="timeline-item__tags"><span>RAB</span><span>MS. Excel</span></div>
             </div>
-  
-          <div class="timeline-item">
+
+            <div class="timeline-item">
               <div class="timeline-item__dot"></div>
               <div class="timeline-item__date">Januari 2025</div>
               <h4 class="timeline-item__role">Freelance Surveyor</h4>
-              <p class="timeline-item__company">Dinas Pekerjaan Umum Sumber Daya Air Provinsi Jawa Timur· - · Surabaya, Jawa Timur, Indonesia.</p>
-              <p class="timeline-item__desc">Bertugas melakukan survei harga material dan bahan bangunan di berbagai toko yang berada di Kabupaten Malang dan Kota Malang untuk Analisa Harga Satuan Pekerjaan (AHSP). </p>
-              <div class="timeline-item__tags">
-              <span>Surveyor</span>
+              <p class="timeline-item__company">Dinas Pekerjaan Umum Sumber Daya Air Provinsi Jawa Timur · Surabaya, Jawa Timur, Indonesia.</p>
+              <p class="timeline-item__desc">Bertugas melakukan survei harga material dan bahan bangunan di berbagai toko yang berada di Kabupaten Malang dan Kota Malang untuk Analisa Harga Satuan Pekerjaan (AHSP).</p>
+              <div class="timeline-item__tags"><span>Surveyor</span></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-item__dot"></div>
+              <div class="timeline-item__date">Juli — Agustus 2024</div>
+              <h4 class="timeline-item__role">Student Intern</h4>
+              <p class="timeline-item__company">CV. Surya Dwipaka · Mojokerto, Jawa Timur, Indonesia.</p>
+              <p class="timeline-item__desc">Berkesempatan untuk magang di Proyek Rehabilitasi Sungai Kromong, Kabupaten Mojokerto dengan jobdesk sebagai asisten saat opname progress mingguan.</p>
+              <div class="timeline-item__tags"><span>Perhitungan Volume</span></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-item__dot"></div>
+              <div class="timeline-item__date">Juni — Agustus 2023</div>
+              <h4 class="timeline-item__role">Freelance Marketing</h4>
+              <p class="timeline-item__company">LUMI Studio · Sidoarjo, Jawa Timur, Indonesia.</p>
+              <p class="timeline-item__desc">Bertugas melakukan pemasaran produk dan layanan studio secara langsung kepada klien potensial.</p>
+              <div class="timeline-item__tags"><span>Marketing</span></div>
             </div>
           </div>
 
-           <div class="timeline-item">
-              <div class="timeline-item__dot"></div>
-               <div class="timeline-item__date">Juli-Agustus 2024</div>
-              <h4 class="timeline-item__role">Student Intern</h4>
-              <p class="timeline-item__company">CV. Surya Dwipaka - · Mojokerto, Jawa Timur, Indonesia.</p>
-              <p class="timeline-item__desc">Berkesempatan untuk magang di Proyek Rehabilitasi Sungai Kromong, Kabupaten Mojokerto dengan jobdesk sebagai asisten saat opname progress mingguan </p>
-              <div class="timeline-item__tags">
-              <span>Perhitungan Volume</span>
-            </div>
-          </div>         
-            
-           <div class="timeline-item">
-              <div class="timeline-item__dot"></div>
-               <div class="timeline-item__date">Juni-Agustus 2023</div>
-              <h4 class="timeline-item__role">Freelance Marketing</h4>
-              <p class="timeline-item__company">LUMI Studio - · Sidoarjo, Jawa Timur, Indonesia.</p>
-              <p class="timeline-item__desc">Bertugas melakukan survei harga material dan bahan bangunan di berbagai toko yang berada di Kabupaten Malang dan Kota Malang untuk Analisa Harga Satuan Pekerjaan (AHSP). </p>
-              <div class="timeline-item__tags">
-              <span>Marketing</span>
-            </div>
-          </div>         
-          
-          <div class="cv-timeline__section">
-            <h3 class="cv-timeline__heading">
-              <span class="cv-timeline__heading-icon">🎓</span> Pendidikan
-            </h3>
-
+          <!-- TAB: PENDIDIKAN -->
+          <div class="cv-tab-panel cv-tab-panel--hidden" id="tab-pendidikan">
             <div class="timeline-item">
               <div class="timeline-item__dot timeline-item__dot--edu"></div>
-              <div class="timeline-item__date">2022-sekarang</div>
+              <div class="timeline-item__date">2022 — sekarang</div>
               <h4 class="timeline-item__role">D4 Teknologi Rekayasa Konstruksi Bangunan Air</h4>
               <p class="timeline-item__company">Institut Teknologi Sepuluh Nopember · Surabaya</p>
-              <p class="timeline-item__desc"> Selama kuliah saya aktif di beberapa organisasi dan tergabung dalam tim pengabdian masyarakat. Tugas akhir saya: "Perencanaan Kolam Retensi Dan Pola Operasi Pompa Di Kecamatan Genuk Untuk Meningkatkan Efektivitas Pengendalian Banjir Pada Sungai Babon".</p>
+              <p class="timeline-item__desc">Selama kuliah aktif di beberapa organisasi dan tergabung dalam tim pengabdian masyarakat. Tugas akhir: "Perencanaan Kolam Retensi Dan Pola Operasi Pompa Di Kecamatan Genuk Untuk Meningkatkan Efektivitas Pengendalian Banjir Pada Sungai Babon".</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-item__dot timeline-item__dot--edu"></div>
-              <div class="timeline-item__date">2019-2022</div>
+              <div class="timeline-item__date">2019 — 2022</div>
               <h4 class="timeline-item__role">Matematika dan Ilmu Pengetahuan Alam</h4>
               <p class="timeline-item__company">SMAN 1 Turen · Kabupaten Malang</p>
-              <p class="timeline-item__desc">Pernah menjadi Ketua OSIS SMAN 1 Turen Periode 2020/2021 dan menorehkan beberapa prestasi seperti :
-               - Juara 1 Lomba Cinematografi SMA Awards 2020
-               -Juara 2 Lomba Cipta Lagu FLS2N TIngkat Kabupaten Malang
-              </p>
+              <p class="timeline-item__desc">Pernah menjadi Ketua OSIS SMAN 1 Turen Periode 2020/2021 dan menorehkan beberapa prestasi seperti Juara 1 Lomba Cinematografi SMA Awards 2020 dan Juara 2 Lomba Cipta Lagu FLS2N Tingkat Kabupaten Malang.</p>
             </div>
           </div>
+
+          <!-- TAB: ORGANISASI -->
+          <div class="cv-tab-panel cv-tab-panel--hidden" id="tab-organisasi">
+            <div class="timeline-item">
+              <div class="timeline-item__dot timeline-item__dot--org"></div>
+              <div class="timeline-item__date">2020 — 2021</div>
+              <h4 class="timeline-item__role">Ketua OSIS</h4>
+              <p class="timeline-item__company">OSIS SMAN 1 Turen · Malang, Jawa Timur</p>
+              <p class="timeline-item__desc">Memimpin organisasi siswa intra sekolah dengan anggota lebih dari 30 orang. Bertanggung jawab atas perencanaan dan pelaksanaan berbagai kegiatan sekolah serta koordinasi antar divisi.</p>
+              <div class="timeline-item__tags">
+                <span>Leadership</span><span>Manajemen Organisasi</span><span>Public Speaking</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-item__dot timeline-item__dot--org"></div>
+              <div class="timeline-item__date">2022 — sekarang</div>
+              <h4 class="timeline-item__role">Anggota Aktif Himpunan Mahasiswa</h4>
+              <p class="timeline-item__company">Himpunan Mahasiswa Teknik Infrastruktur Sipil · ITS Surabaya</p>
+              <p class="timeline-item__desc">Aktif berpartisipasi dalam kegiatan himpunan mahasiswa di program studi Teknologi Rekayasa Konstruksi Bangunan Air, berkontribusi dalam berbagai kegiatan akademik maupun non-akademik.</p>
+              <div class="timeline-item__tags">
+                <span>Organisasi Kemahasiswaan</span><span>Kolaborasi Tim</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: ABMAS -->
+          <div class="cv-tab-panel cv-tab-panel--hidden" id="tab-abmas">
+            <div class="timeline-item">
+              <div class="timeline-item__dot timeline-item__dot--abmas"></div>
+              <div class="timeline-item__date">2023</div>
+              <h4 class="timeline-item__role">Relawan Pengabdian Masyarakat</h4>
+              <p class="timeline-item__company">Program Abmas ITS · Jawa Timur</p>
+              <p class="timeline-item__desc">Tergabung dalam tim pengabdian masyarakat (abmas) selama masa perkuliahan di ITS. Berkontribusi dalam kegiatan sosial dan teknis untuk mendukung pemberdayaan masyarakat di bidang infrastruktur dan sumber daya air.</p>
+              <div class="timeline-item__tags">
+                <span>Pengabdian Masyarakat</span><span>Infrastruktur</span><span>Sumber Daya Air</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-item__dot timeline-item__dot--abmas"></div>
+              <div class="timeline-item__date">2024</div>
+              <h4 class="timeline-item__role">Tim Abmas Teknik Sipil</h4>
+              <p class="timeline-item__company">Institut Teknologi Sepuluh Nopember · Surabaya</p>
+              <p class="timeline-item__desc">Berpartisipasi aktif dalam program pengabdian kepada masyarakat sebagai bagian dari kegiatan tridharma perguruan tinggi, memberikan kontribusi nyata kepada komunitas lokal melalui pengetahuan teknik sipil dan konstruksi.</p>
+              <div class="timeline-item__tags">
+                <span>Tridharma PT</span><span>Konstruksi</span><span>Pemberdayaan Masyarakat</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -837,6 +887,49 @@
       </div>
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════
+       CV PREVIEW MODAL
+  ═══════════════════════════════════ -->
+  <div class="cv-modal-overlay" id="cvModalOverlay" onclick="closeCVModal()">
+    <div class="cv-modal" onclick="event.stopPropagation()">
+      <div class="cv-modal__header">
+        <div class="cv-modal__title">
+          <span class="cv-modal__icon">📄</span>
+          <div>
+            <h3>CV — Selindion Octa Viendra Hartono</h3>
+            <p>Preview CV sebelum mengunduh</p>
+          </div>
+        </div>
+        <div class="cv-modal__actions">
+          <a href="Selindion Octa Viendra Hartono-CV-Terbaru.pdf" download class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+          <button class="cv-modal__close" onclick="closeCVModal()" aria-label="Tutup">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cv-modal__body">
+        <iframe
+          src="Selindion Octa Viendra Hartono-CV-Terbaru.pdf"
+          class="cv-modal__iframe"
+          title="Preview CV Selindion Octa Viendra Hartono"
+        ></iframe>
+        <div class="cv-modal__fallback">
+          <div class="cv-modal__fallback-inner">
+            <span style="font-size:3rem">📄</span>
+            <p>Browser tidak dapat menampilkan preview PDF.</p>
+            <a href="Selindion Octa Viendra Hartono-CV-Terbaru.pdf" download class="btn btn--primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CV Langsung
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
